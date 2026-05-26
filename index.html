@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FEF Educación | Sitio en Construcción</title>
+  <meta name="description" content="FEF Educación - Tu Futuro, es Hoy. Primera Plataforma E-learning 100% Virtual con modelo de enseñanza On Demand y En Vivo." />
+  <meta name="theme-color" content="#070a13" />
+
+  <link rel="icon" href="assets/img/favicon.ico" sizes="any" />
+  <link rel="icon" type="image/png" href="assets/img/fefFavico_dark.png" />
+  <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div id="particles-js" aria-hidden="true"></div>
+  <div class="orb orb-one"></div>
+  <div class="orb orb-two"></div>
+
+  <header class="site-header">
+    <a class="brand" href="#" aria-label="FEF Educación">
+      <img class="brand-logo logo-dark" src="assets/img/fefLogo_dark.png" alt="FEF Educación" width="72" height="72" />
+      <img class="brand-logo logo-light" src="assets/img/fefLogo_ligth.png" alt="FEF Educación" width="72" height="72" />
+      <span class="brand-copy">
+        <strong>FEF Educación</strong>
+        <small>Tu Futuro, es Hoy.</small>
+      </span>
+    </a>
+
+    <button id="themeToggle" class="theme-toggle" type="button" aria-label="Cambiar modo claro u oscuro">
+      <span class="theme-icon">☀️</span>
+      <span class="theme-label">Modo</span>
+    </button>
+  </header>
+
+  <main class="hero">
+    <section class="hero-content" data-aos="fade-up">
+      <p class="eyebrow animate__animated animate__fadeInDown">Muy pronto online</p>
+
+      <h1 class="title animate__animated animate__fadeInUp">
+        Estamos construyendo el futuro de la educación virtual.
+      </h1>
+
+      <p class="subtitle animate__animated animate__fadeInUp animate__delay-1s">
+        <strong>FEF Educación</strong> — “Tu Futuro, es Hoy.” La primera plataforma E-learning 100% virtual
+        con modelo de enseñanza <span>On Demand</span> y <span>En Vivo</span>.
+      </p>
+
+      <div class="launch-card" data-aos="zoom-in" data-aos-delay="150">
+        <div class="launch-topline">
+          <span class="pulse"></span>
+          <span id="locationLabel">Detectando país...</span>
+        </div>
+
+        <h2>Inauguración en</h2>
+
+        <div class="countdown" id="countdown" aria-live="polite">
+          <div class="time-box"><strong id="days">00</strong><small>Días</small></div>
+          <div class="time-box"><strong id="hours">00</strong><small>Horas</small></div>
+          <div class="time-box"><strong id="minutes">00</strong><small>Min</small></div>
+          <div class="time-box"><strong id="seconds">00</strong><small>Seg</small></div>
+        </div>
+
+        <p class="date-note">Fecha base: <span id="targetDateLabel"></span> · Hora Argentina</p>
+      </div>
+
+      <div class="notify-form" data-aos="fade-up" data-aos-delay="250">
+        <label>¿Querés ser parte de la revolución educativa?</label>
+        <a
+          href="https://wa.me/543816150488?text=Hola%20FEF%20Educaci%C3%B3n.%20Quiero%20ser%20parte%20de%20FEF%20Educaci%C3%B3n."
+          target="_blank"
+          rel="noopener noreferrer"
+          class="whatsapp-btn"
+          aria-label="Enviar mensaje por WhatsApp a FEF Educación">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M20.52 3.48A11.79 11.79 0 0 0 12.06 0C5.45 0 .06 5.39.06 12c0 2.11.55 4.17 1.6 5.99L0 24l6.18-1.62A11.96 11.96 0 0 0 12.06 24C18.67 24 24 18.61 24 12c0-3.2-1.25-6.21-3.48-8.52ZM12.06 21.84c-1.8 0-3.56-.48-5.1-1.38l-.36-.18-3.66.96.96-3.54-.24-.36A9.8 9.8 0 0 1 2.22 12c0-5.43 4.41-9.84 9.84-9.84s9.78 4.41 9.78 9.84-4.35 9.84-9.78 9.84Zm5.4-7.38c-.3-.12-1.8-.9-2.1-1.02-.3-.12-.48-.18-.72.18-.18.3-.78 1.02-.96 1.2-.18.18-.36.24-.66.12-.3-.12-1.32-.48-2.52-1.56-.96-.84-1.56-1.86-1.74-2.16-.18-.3 0-.48.12-.66.12-.12.3-.36.42-.54.12-.18.18-.3.3-.48.12-.24.06-.42 0-.6-.06-.12-.72-1.74-.96-2.4-.24-.6-.48-.54-.72-.54h-.6c-.24 0-.6.06-.9.42-.3.3-1.14 1.08-1.14 2.7s1.2 3.18 1.38 3.42c.18.24 2.34 3.54 5.7 4.98.78.36 1.44.54 1.92.72.84.24 1.56.18 2.16.12.66-.12 1.8-.72 2.04-1.44.24-.72.24-1.32.18-1.44-.06-.18-.24-.24-.54-.36Z"/>
+          </svg>
+          Quiero ser parte de FEF Educación
+        </a>
+      </div>
+    </section>
+
+    <aside class="visual-panel" data-aos="fade-left" data-aos-delay="200">
+      <div class="device">
+        <div class="device-header"><span></span><span></span><span></span></div>
+        <div class="device-screen">
+          <div class="scan-line"></div>
+          <img class="device-logo logo-dark" src="assets/img/fefLogo_dark.png" alt="" aria-hidden="true" />
+          <img class="device-logo logo-light" src="assets/img/fefLogo_ligth.png" alt="" aria-hidden="true" />
+          <p>FEF OS</p>
+          <h3>ON DEMAND + EN VIVO</h3>
+          <div class="progress"><span style="--width: 82%"></span></div>
+          <ul>
+            <li>Campus virtual 24/7</li>
+            <li>Clases en vivo</li>
+            <li>Experiencia moderna</li>
+          </ul>
+        </div>
+      </div>
+    </aside>
+  </main>
+
+  <footer class="site-footer">
+    <p>© <span id="year"></span> FEF Educación. Todos los derechos reservados.</p>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
