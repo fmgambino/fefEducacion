@@ -1,125 +1,282 @@
-/* FEF Educación - Landing Page Sitio en Construcción */
+/* ==========================================================
+   FEF Educación - Landing Page
+   JS refactorizado y optimizado
+   ========================================================== */
 
 /*
-  ✅ MODIFICAR FECHA Y HORA DE INAUGURACIÓN AQUÍ
-  Formato: YYYY-MM-DDTHH:mm:ss-03:00
-  -03:00 representa la hora de Argentina.
+  MODIFICAR FECHA Y HORA DE INAUGURACIÓN AQUÍ
+
+  Formato recomendado:
+  YYYY-MM-DDTHH:mm:ss-03:00
+
+  -03:00 representa hora Argentina.
 */
 const LAUNCH_DATE_ARG = "2026-06-23T00:00:00-03:00";
 
-const daysEl = document.querySelector("#days");
-const hoursEl = document.querySelector("#hours");
-const minutesEl = document.querySelector("#minutes");
-const secondsEl = document.querySelector("#seconds");
-const targetDateLabel = document.querySelector("#targetDateLabel");
-const locationLabel = document.querySelector("#locationLabel");
-const themeToggle = document.querySelector("#themeToggle");
+const $ = (selector) => document.querySelector(selector);
+
+const elements = {
+  days: $("#days"),
+  hours: $("#hours"),
+  minutes: $("#minutes"),
+  seconds: $("#seconds"),
+  targetDateLabel: $("#targetDateLabel"),
+  locationLabel: $("#locationLabel"),
+  themeToggle: $("#themeToggle"),
+  year: $("#year"),
+  scrollTop: $("#scrollTop")
+};
+
 const targetDate = new Date(LAUNCH_DATE_ARG);
-
-const formatterArgentina = new Intl.DateTimeFormat("es-AR", {
-  dateStyle: "full",
-  timeStyle: "short",
-  timeZone: "America/Argentina/Buenos_Aires"
-});
-
-targetDateLabel.textContent = formatterArgentina.format(targetDate);
 
 function pad(value) {
   return String(value).padStart(2, "0");
 }
 
+function formatTargetDate() {
+  const formatter = new Intl.DateTimeFormat("es-AR", {
+    dateStyle: "full",
+    timeStyle: "short",
+    timeZone: "America/Argentina/Buenos_Aires"
+  });
+
+  elements.targetDateLabel.textContent = formatter.format(targetDate);
+}
+
 function updateCountdown() {
-  const distance = targetDate.getTime() - Date.now();
+  const now = new Date();
+  const distance = targetDate.getTime() - now.getTime();
 
   if (distance <= 0) {
-    document.querySelector("#countdown").innerHTML = `
-      <div class="time-box" style="grid-column: 1 / -1;">
-        <strong>¡Ya estamos online!</strong>
-        <small>FEF Educación</small>
-      </div>
+    $("#countdown").innerHTML = `
+      <article style="grid-column: 1 / -1;">
+        <strong>¡Online!</strong>
+        <span>FEF Educación ya está disponible</span>
+      </article>
     `;
     return;
   }
 
   const totalSeconds = Math.floor(distance / 1000);
-  daysEl.textContent = pad(Math.floor(totalSeconds / 86400));
-  hoursEl.textContent = pad(Math.floor((totalSeconds % 86400) / 3600));
-  minutesEl.textContent = pad(Math.floor((totalSeconds % 3600) / 60));
-  secondsEl.textContent = pad(totalSeconds % 60);
+
+  elements.days.textContent = pad(Math.floor(totalSeconds / 86400));
+  elements.hours.textContent = pad(Math.floor((totalSeconds % 86400) / 3600));
+  elements.minutes.textContent = pad(Math.floor((totalSeconds % 3600) / 60));
+  elements.seconds.textContent = pad(totalSeconds % 60);
 }
 
-updateCountdown();
-setInterval(updateCountdown, 1000);
+function detectCountryByLocale() {
+  const locale = navigator.language || "es-AR";
+  const region = locale.split("-")[1];
 
-async function detectCountry() {
+  if (!region) {
+    elements.locationLabel.textContent = "Lanzamiento 00:00 ARG";
+    return;
+  }
+
   try {
-    const response = await fetch("https://ipapi.co/json/", { cache: "no-store" });
-    if (!response.ok) throw new Error("No se pudo detectar país por IP");
-    const data = await response.json();
-    const country = data.country_name || data.country || "tu país";
-    locationLabel.textContent = `Ingresando desde ${country} · Lanzamiento 00:00 ARG`;
+    const regionNames = new Intl.DisplayNames(["es"], { type: "region" });
+    elements.locationLabel.textContent = `Ingresando desde ${regionNames.of(region)} · 00:00 ARG`;
   } catch {
-    const locale = navigator.language || navigator.userLanguage || "es-AR";
-    const region = locale.split("-")[1];
-    if (region && "DisplayNames" in Intl) {
-      const regionNames = new Intl.DisplayNames(["es"], { type: "region" });
-      locationLabel.textContent = `Ingresando desde ${regionNames.of(region)} · Lanzamiento 00:00 ARG`;
-    } else {
-      locationLabel.textContent = "Ubicación no disponible · Lanzamiento 00:00 ARG";
-    }
+    elements.locationLabel.textContent = "Lanzamiento 00:00 ARG";
   }
 }
 
-detectCountry();
+function initTheme() {
+  // Primera visita: siempre modo oscuro.
+  // Solo cambia si el usuario usa el botón y se guarda su preferencia.
+  const savedTheme = localStorage.getItem("fef-theme");
+  const initialTheme = savedTheme || "dark";
 
-const savedTheme = localStorage.getItem("fef-theme");
-const prefersLight = window.matchMedia("(prefers-color-scheme: light)").matches;
-const initialTheme = savedTheme || (prefersLight ? "light" : "dark");
-document.documentElement.setAttribute("data-theme", initialTheme);
-updateThemeButton(initialTheme);
+  document.documentElement.setAttribute("data-theme", initialTheme);
 
-themeToggle.addEventListener("click", () => {
-  const current = document.documentElement.getAttribute("data-theme");
-  const next = current === "dark" ? "light" : "dark";
-  document.documentElement.setAttribute("data-theme", next);
-  localStorage.setItem("fef-theme", next);
-  updateThemeButton(next);
-});
+  elements.themeToggle.addEventListener("click", () => {
+    const current = document.documentElement.getAttribute("data-theme");
+    const next = current === "dark" ? "light" : "dark";
 
-function updateThemeButton(theme) {
-  themeToggle.querySelector(".theme-icon").textContent = theme === "dark" ? "☀️" : "🌙";
-  document.querySelector('meta[name="theme-color"]').setAttribute("content", theme === "dark" ? "#070a13" : "#f6f8ff");
+    document.documentElement.setAttribute("data-theme", next);
+    localStorage.setItem("fef-theme", next);
+  });
 }
 
-document.querySelector("#year").textContent = new Date().getFullYear();
+function initParticles() {
+  if (typeof particlesJS === "undefined") return;
 
-if (window.AOS) {
-  AOS.init({ duration: 900, once: true, easing: "ease-out-cubic" });
-}
-
-if (window.particlesJS) {
   particlesJS("particles-js", {
     particles: {
-      number: { value: 70, density: { enable: true, value_area: 900 } },
-      color: { value: ["#7c3cff", "#00e5ff", "#00ff95"] },
+      number: { value: 82, density: { enable: true, value_area: 960 } },
+      color: { value: ["#19e8ff", "#a855f7", "#00ffb2"] },
       shape: { type: "circle" },
       opacity: { value: 0.35, random: true },
-      size: { value: 3, random: true },
-      line_linked: { enable: true, distance: 145, color: "#00e5ff", opacity: 0.18, width: 1 },
-      move: { enable: true, speed: 1.2, direction: "none", random: true, straight: false, out_mode: "out", bounce: false }
+      size: { value: 2.5, random: true },
+      line_linked: {
+        enable: true,
+        distance: 150,
+        color: "#19e8ff",
+        opacity: 0.16,
+        width: 1
+      },
+      move: {
+        enable: true,
+        speed: 0.72,
+        direction: "none",
+        random: true,
+        straight: false,
+        out_mode: "out"
+      }
     },
     interactivity: {
       detect_on: "canvas",
-      events: { onhover: { enable: true, mode: "grab" }, onclick: { enable: true, mode: "push" }, resize: true },
-      modes: { grab: { distance: 170, line_linked: { opacity: 0.35 } }, push: { particles_nb: 4 } }
+      events: {
+        onhover: { enable: true, mode: "grab" },
+        onclick: { enable: true, mode: "push" },
+        resize: true
+      },
+      modes: {
+        grab: { distance: 170, line_linked: { opacity: 0.32 } },
+        push: { particles_nb: 3 }
+      }
     },
     retina_detect: true
   });
 }
 
-if (window.gsap) {
-  gsap.from(".brand", { y: -18, opacity: 0, duration: 0.9, ease: "power3.out" });
-  gsap.from(".theme-toggle", { y: -18, opacity: 0, duration: 0.9, delay: 0.15, ease: "power3.out" });
-  gsap.to(".orb-one", { x: 35, y: -25, duration: 5, repeat: -1, yoyo: true, ease: "sine.inOut" });
-  gsap.to(".orb-two", { x: -30, y: 35, duration: 6, repeat: -1, yoyo: true, ease: "sine.inOut" });
+/*
+  Avión de papel: planeo natural
+  - No acelera bruscamente.
+  - El avión sigue una curva amplia.
+  - Se balancea suavemente como si estuviera planeando.
+  - La estela se dibuja y se desvanece detrás del avión.
+*/
+function initPaperPlaneFlight() {
+  const plane = $("#paperPlane");
+  const planeInner = document.querySelector(".paper-plane-inner");
+  const path = $("#paperFlightPath");
+  const trail = $(".live-trail");
+
+  if (!plane || !path || !trail || typeof gsap === "undefined") return;
+
+  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (reduceMotion) {
+    plane.style.opacity = "0.42";
+    trail.style.opacity = "0.35";
+    return;
+  }
+
+  if (window.MotionPathPlugin) {
+    gsap.registerPlugin(MotionPathPlugin);
+  }
+
+  const pathLength = path.getTotalLength();
+  const isMobile = window.matchMedia("(max-width: 720px)").matches;
+  const flightDuration = isMobile ? 38 : 44;
+
+  gsap.set(trail, {
+    strokeDasharray: `${pathLength * 0.22} ${pathLength}`,
+    strokeDashoffset: pathLength,
+    opacity: 0
+  });
+
+  gsap.set(plane, {
+    opacity: 0,
+    scale: isMobile ? 1.16 : 1,
+    transformOrigin: "50% 50%"
+  });
+
+  gsap.set(planeInner, {
+    transformOrigin: "50% 55%"
+  });
+
+  const master = gsap.timeline({
+    repeat: -1,
+    repeatDelay: 2.8
+  });
+
+  master
+    .to(plane, {
+      opacity: 1,
+      duration: 2,
+      ease: "sine.out"
+    }, 0)
+    .to(trail, {
+      opacity: 1,
+      duration: 2.4,
+      ease: "sine.out"
+    }, 0.25)
+    .to(plane, {
+      duration: flightDuration,
+      ease: "none",
+      motionPath: {
+        path,
+        align: path,
+        alignOrigin: [0.5, 0.5],
+        autoRotate: true
+      }
+    }, 0)
+    .to(trail, {
+      strokeDashoffset: -pathLength * 0.92,
+      duration: flightDuration,
+      ease: "none"
+    }, 0)
+    .to(plane, {
+      opacity: 0,
+      duration: 2.6,
+      ease: "sine.in"
+    }, flightDuration - 2.3)
+    .to(trail, {
+      opacity: 0,
+      duration: 3,
+      ease: "sine.in"
+    }, flightDuration - 1.8);
+
+  // Balanceo independiente: sensación de hoja planeando.
+  gsap.to(planeInner, {
+    rotation: 6,
+    y: -1.2,
+    duration: 4.7,
+    repeat: -1,
+    yoyo: true,
+    ease: "sine.inOut"
+  });
+
+  gsap.to(planeInner, {
+    x: 1.1,
+    duration: 6.2,
+    repeat: -1,
+    yoyo: true,
+    ease: "sine.inOut"
+  });
 }
+
+function initAOS() {
+  if (typeof AOS === "undefined") return;
+
+  AOS.init({
+    duration: 900,
+    once: true,
+    easing: "ease-out-cubic"
+  });
+}
+
+function initScrollTop() {
+  elements.scrollTop.addEventListener("click", () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  });
+}
+
+function init() {
+  elements.year.textContent = new Date().getFullYear();
+
+  formatTargetDate();
+  updateCountdown();
+  setInterval(updateCountdown, 1000);
+
+  detectCountryByLocale();
+  initTheme();
+  initParticles();
+  initPaperPlaneFlight();
+  initAOS();
+  initScrollTop();
+}
+
+document.addEventListener("DOMContentLoaded", init);
