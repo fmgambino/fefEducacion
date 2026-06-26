@@ -11,7 +11,7 @@
 
   -03:00 representa hora Argentina.
 */
-const LAUNCH_DATE_ARG = "2026-06-23T00:00:00-03:00";
+const LAUNCH_DATE_ARG = "2026-07-15T00:00:00-03:00";
 
 const $ = (selector) => document.querySelector(selector);
 
