@@ -1,144 +1,216 @@
-<!DOCTYPE html>
-<html lang="es">
+<!doctype html>
+<html lang="es-AR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="FEF Educación - Plataforma E-learning moderna con cursos online, recursos, comunidad y beneficios de lanzamiento." />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="theme-color" content="#191919" />
-  <title>FEF Educación | Plataforma E-learning</title>
-  <link rel="preconnect" href="https://cdn.jsdelivr.net" />
+  <title>FEF Educación | Cursos On-Demand y Capacitaciones en Vivo</title>
+  <meta name="description" content="Landing page FEF Educación: cursos on-demand, capacitaciones en vivo, FEF Kid´s, certificaciones UTN-FRT y COPIT." />
+  <link rel="icon" href="assets/img/fefFavico_dark.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
   <link rel="stylesheet" href="assets/styles.css" />
-  <script defer src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-  <script defer src="assets/app.js"></script>
 </head>
 <body>
-  <header class="topbar" aria-label="Promoción de lanzamiento">
-    <span class="sale-pill">LANZAMIENTO</span>
-    <p>50% OFF por inauguración de la plataforma FEF Educación</p>
-  </header>
+  <div class="topbar"><span>INAUGURACIÓN</span><b>50% OFF</b><strong>en cursos y capacitaciones seleccionadas FEF-50%OFF</strong></div>
 
-  <header class="main-header" aria-label="Navegación principal">
-    <a class="brand" href="https://fefeducacion.com" aria-label="FEF Educación inicio">
-      <span class="brand-mark">FEF</span>
-      <span class="brand-text">Educación</span>
-    </a>
+  <header class="site-header" id="top">
+    <div class="header-inner">
+      <a class="brand" href="https://fefeducacion.com" aria-label="FEF Educación">
+        <img src="assets/img/fefLogo_dark.png" alt="FEF Educación" />
+        <strong>Educación</strong>
+      </a>
 
-    <nav class="desktop-nav" aria-label="Menú desktop">
-      <a href="#cursos">Cursos</a>
-      <a href="#beneficios">Beneficios</a>
-      <a href="#metodologia">Metodología</a>
-      <a href="#comunidad">Comunidad</a>
-      <a href="#contacto">Contacto</a>
-    </nav>
+      <nav class="desktop-nav" aria-label="Menú principal">
+        <div class="nav-item" data-menu="cursos"><button type="button">Cursos <i class="ti ti-chevron-down"></i></button></div>
+        <div class="nav-item" data-menu="capacitaciones"><button type="button">Capacitaciones <i class="ti ti-chevron-down"></i></button></div>
+        <div class="nav-item" data-menu="kids"><button type="button">FEF Kid´s <i class="ti ti-chevron-down"></i></button></div>
+        <div class="nav-item" data-menu="certificaciones"><button type="button">Certificaciones <i class="ti ti-chevron-down"></i></button></div>
+        <div class="nav-item" data-menu="instituciones"><button type="button">Instituciones <i class="ti ti-chevron-down"></i></button></div>
+      </nav>
 
-    <div class="header-actions">
-      <a class="btn btn-primary" href="#lead">Inscribirme ahora</a>
-      <button class="icon-btn" id="themeToggle" aria-label="Cambiar modo claro u oscuro">
-        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a9 9 0 1 0 9 9 7 7 0 0 1-9-9Z"/></svg>
-      </button>
+      <div class="header-actions">
+        <a class="btn btn-soft desktop-cta" href="#plataforma">Plataforma Alumnos</a>
+        <a class="btn btn-primary" href="#lead">Inscribirme</a>
+        <div class="country" id="countrySelect">
+          <button class="country-btn" type="button" aria-label="Seleccionar país"><img src="https://flagcdn.com/w40/ar.png" alt="Argentina"><i class="ti ti-chevron-down"></i></button>
+          <div class="country-menu">
+            <a href="#"><img src="https://flagcdn.com/w40/ar.png" alt="Argentina">Argentina</a>
+            <a href="#"><img src="https://flagcdn.com/w40/br.png" alt="Brasil">Brasil</a>
+            <a href="#"><img src="https://flagcdn.com/w40/cl.png" alt="Chile">Chile</a>
+            <a href="#"><img src="https://flagcdn.com/w40/co.png" alt="Colombia">Colombia</a>
+            <a href="#"><img src="https://flagcdn.com/w40/es.png" alt="España">España</a>
+            <a href="#"><img src="https://flagcdn.com/w40/us.png" alt="Estados Unidos">Estados Unidos</a>
+            <a href="#"><img src="https://flagcdn.com/w40/uy.png" alt="Uruguay">Uruguay</a>
+            <a href="#"><i class="ti ti-world"></i> Global</a>
+          </div>
+        </div>
+        <button class="icon-btn" id="hamburgerBtn" type="button" aria-label="Abrir menú"><i class="ti ti-menu-2"></i></button>
+      </div>
     </div>
+
+    <section class="mega" id="megaMenu" aria-hidden="true">
+      <div class="mega-left" id="megaLeft"></div>
+      <div class="mega-mid" id="megaMid"></div>
+      <div class="mega-feature">
+        <div class="mega-image" id="megaImage"><span>Imagen ilustrativa<br><small>Agregar URL en app.js &gt; menus.imagen</small></span></div>
+        <h3 id="megaTitle">Cursos On-Demand</h3>
+        <p id="megaText">Formaciones flexibles para aprender a tu ritmo.</p>
+        <a id="megaBtn" class="btn btn-dark" href="#categorias">Ver opciones</a>
+      </div>
+    </section>
+
+    <section class="hamburger-panel" id="hamburgerPanel">
+      <div class="panel-col">
+        <small>CONOCÉ MÁS</small>
+        <a href="#formatos"><i class="ti ti-users"></i> Comunidad <i class="ti ti-chevron-right"></i></a>
+        <a href="#categorias"><i class="ti ti-book"></i> Recursos <i class="ti ti-chevron-right"></i></a>
+        <a href="#mentor"><i class="ti ti-user-star"></i> Red de Mentores <i class="ti ti-chevron-right"></i></a>
+        <a href="#kids"><i class="ti ti-rocket"></i> FEF Kid´s <i class="ti ti-chevron-right"></i></a>
+        <a href="#plataforma"><i class="ti ti-school"></i> Plataforma de alumnos <i class="ti ti-chevron-right"></i></a>
+      </div>
+      <div class="panel-col">
+        <small>PROGRAMAS</small>
+        <a href="#categorias">Cursos On-Demand <i class="ti ti-chevron-right"></i></a>
+        <a href="#categorias">Capacitaciones en Vivo <i class="ti ti-chevron-right"></i></a>
+        <a href="#certificaciones">Certificaciones UTN-FRT <i class="ti ti-chevron-right"></i></a>
+        <a href="#certificaciones">Certificaciones COPIT <i class="ti ti-chevron-right"></i></a>
+      </div>
+      <div class="panel-card">
+        <div class="panel-img"><span>Imagen destacada</span></div>
+        <h3>Elegí tu curso o capacitación favorita</h3>
+        <a href="#categorias" class="btn btn-primary">Ver opciones</a>
+      </div>
+    </section>
   </header>
 
   <main>
-    <section class="hero section" id="inicio">
-      <div class="hero-glow"></div>
-      <div class="hero-content">
-        <span class="eyebrow">Aprendé online. Crecé profesionalmente.</span>
-        <h1>Plataforma E-learning FEF</h1>
-        <p>Formación moderna, clases online, recursos descargables y una comunidad educativa pensada para acompañarte desde el primer día.</p>
-        <div class="hero-actions">
-          <button class="btn btn-primary" id="openLeadModal">Obtener 50% OFF</button>
-          <a class="btn btn-ghost" href="#cursos">Ver propuesta</a>
+    <section class="hero">
+      <div class="hero-copy">
+        <span class="label">CURSOS ON-DEMAND + CAPACITACIONES EN VIVO</span>
+        <h1>Aprendé nuevas habilidades con la plataforma E-learning de FEF</h1>
+        <p>Formación moderna, flexible y profesional para estudiantes, docentes, emprendedores y equipos de trabajo.</p>
+        <div class="hero-actions"><a class="btn btn-primary" href="#lead">Obtener 50% OFF</a><a class="btn btn-dark" href="#categorias">Ver categorías</a></div>
+      </div>
+      <div class="hero-visual">
+        <div class="image-slot hero-img"><b>Imagen principal</b><span>Agregar URL en index.html o CSS</span></div>
+        <div class="stats"><div><b>24/7</b><span>On-Demand</span></div><div><b>Live</b><span>Mentorías</span></div></div>
+      </div>
+    </section>
+
+    <section class="logos-section" id="instituciones">
+      <div class="section-head center"><span class="label">ALIANZAS</span><h2>Instituciones, certificaciones y alianzas estratégicas</h2><p>Formación profesional respaldada por instituciones, colegios y aliados educativos.</p></div>
+      <div class="institution-slider">
+        <div class="institution-track">
+          <article class="inst-card"><i class="ti ti-certificate"></i><strong>UTN-FRT</strong><span>Certificación</span></article>
+          <article class="inst-card"><i class="ti ti-shield-check"></i><strong>COPIT</strong><span>Aval profesional</span></article>
+          <article class="inst-card"><i class="ti ti-handshake"></i><strong>ASE</strong><span>Alianza estratégica</span></article>
+          <article class="inst-card"><i class="ti ti-school"></i><strong>Instituciones</strong><span>Capacitación</span></article>
+          <article class="inst-card"><i class="ti ti-briefcase"></i><strong>Empresas</strong><span>Equipos de trabajo</span></article>
+          <article class="inst-card"><i class="ti ti-chalkboard"></i><strong>Docentes</strong><span>Comunidad</span></article>
+          <article class="inst-card"><i class="ti ti-certificate"></i><strong>UTN-FRT</strong><span>Certificación</span></article>
+          <article class="inst-card"><i class="ti ti-shield-check"></i><strong>COPIT</strong><span>Aval profesional</span></article>
+          <article class="inst-card"><i class="ti ti-handshake"></i><strong>ASE</strong><span>Alianza estratégica</span></article>
+          <article class="inst-card"><i class="ti ti-school"></i><strong>Instituciones</strong><span>Capacitación</span></article>
         </div>
-        <small>🎁 Completá tus datos y recibí el código + E-book de regalo.</small>
       </div>
-      <div class="hero-card" id="lead">
-        <div class="card-icon"><svg viewBox="0 0 24 24"><path d="M4 5a3 3 0 0 1 3-3h10a3 3 0 0 1 3 3v14a1 1 0 0 1-1.5.86L12 16.1l-6.5 3.76A1 1 0 0 1 4 19V5Zm3-1a1 1 0 0 0-1 1v12.27l5.5-3.18a1 1 0 0 1 1 0l5.5 3.18V5a1 1 0 0 0-1-1H7Z"/></svg></div>
-        <h2>Código inaugural</h2>
-        <p>Registrá tu interés y accedé al beneficio exclusivo de apertura.</p>
-        <button class="btn btn-primary full" id="openLeadModalCard">Solicitar cupón</button>
+      <small>Próximamente capacitaciones con puntaje docente.</small>
+    </section>
+
+    <section class="formats" id="formatos">
+      <span class="badge">¿POR DÓNDE EMPIEZO?</span>
+      <h2>Encontrá el formato perfecto para vos</h2>
+      <p>Cada formato resuelve un objetivo distinto. Empezá por el que mejor se adapte a lo que querés lograr.</p>
+      <div class="format-grid">
+        <article><small>UNA HABILIDAD PUNTUAL</small><h3>Curso</h3><p><i class="ti ti-check"></i> Para dominar un tema específico.</p><p><i class="ti ti-check"></i> Formación corta y enfocada.</p><p><i class="ti ti-check"></i> Clases disponibles a demanda.</p><a class="btn btn-primary" href="#categorias">Ver cursos <i class="ti ti-arrow-right"></i></a></article>
+        <article><small>APRENDIZAJE GUIADO</small><h3>Capacitación</h3><p><i class="ti ti-check"></i> Encuentros en vivo con mentor.</p><p><i class="ti ti-check"></i> Consultas, práctica y seguimiento.</p><p><i class="ti ti-check"></i> Ideal para docentes e instituciones.</p><a class="btn btn-primary" href="#categorias">Ver capacitaciones <i class="ti ti-arrow-right"></i></a></article>
+        <article><small>CRECIMIENTO PROFESIONAL</small><h3>Certificación</h3><p><i class="ti ti-check"></i> Respaldo UTN-FRT y COPIT.</p><p><i class="ti ti-check"></i> Recorrido profesional integral.</p><p><i class="ti ti-check"></i> Próximamente con puntaje docente.</p><a class="btn btn-primary" href="#certificaciones">Ver certificaciones <i class="ti ti-arrow-right"></i></a></article>
       </div>
     </section>
 
-    <section class="stats" aria-label="Indicadores">
-      <article><strong>+100</strong><span>Recursos</span></article>
-      <article><strong>24/7</strong><span>Campus online</span></article>
-      <article><strong>50%</strong><span>OFF inicial</span></article>
-      <article><strong>100%</strong><span>Mobile First</span></article>
-    </section>
-
-    <section class="section" id="cursos">
-      <div class="section-head">
-        <span class="eyebrow">Nuestra propuesta</span>
-        <h2>Cursos pensados para aprender de verdad</h2>
-        <p>Contenido claro, práctico y aplicable, con una experiencia digital simple y profesional.</p>
-      </div>
-      <div class="grid cards-3">
-        <article class="feature-card">
-          <svg viewBox="0 0 24 24"><path d="M4 4h16a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-6v2h3a1 1 0 1 1 0 2H7a1 1 0 1 1 0-2h3v-2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2Zm0 2v9h16V6H4Z"/></svg>
-          <h3>Campus E-learning</h3>
-          <p>Clases, materiales, evaluaciones y recursos disponibles desde cualquier dispositivo.</p>
-        </article>
-        <article class="feature-card">
-          <svg viewBox="0 0 24 24"><path d="M12 2 2 7l10 5 10-5-10-5Zm0 7.76L6.47 7 12 4.24 17.53 7 12 9.76ZM4 10.24l8 4 8-4V13l-8 4-8-4v-2.76Zm0 5 8 4 8-4V18l-8 4-8-4v-2.76Z"/></svg>
-          <h3>Trayectos claros</h3>
-          <p>Rutas de aprendizaje organizadas para avanzar paso a paso, sin perder el foco.</p>
-        </article>
-        <article class="feature-card">
-          <svg viewBox="0 0 24 24"><path d="M12 3a7 7 0 0 0-4 12.74V20a1 1 0 0 0 1.45.89L12 19.62l2.55 1.27A1 1 0 0 0 16 20v-4.26A7 7 0 0 0 12 3Zm0 2a5 5 0 1 1 0 10 5 5 0 0 1 0-10Zm-2 12.7a7.08 7.08 0 0 0 4 0v.68l-1.55-.77a1 1 0 0 0-.9 0L10 18.38v-.68Z"/></svg>
-          <h3>Certificación</h3>
-          <p>Validación de aprendizajes para sumar valor a tu perfil académico y profesional.</p>
-        </article>
+    <section class="category-section" id="categorias">
+      <div class="section-head center"><span class="label">APRENDÉ CON FEF</span><h2>Elegí la formación perfecta <em>para vos</em></h2></div>
+      <div class="slider-wrap">
+        <button class="slider-arrow left" data-slide="prev"><i class="ti ti-chevron-left"></i></button>
+        <div class="category-slider" id="categorySlider">
+          <article class="category-card"><h3>Programación y desarrollo</h3><div class="image-slot card-img">Imagen</div><a href="#">Ver cursos y carreras <i class="ti ti-arrow-right"></i></a></article>
+          <article class="category-card"><h3>Inteligencia Artificial</h3><div class="image-slot card-img">Imagen</div><a href="#">Ver cursos y carreras <i class="ti ti-arrow-right"></i></a></article>
+          <article class="category-card"><h3>Robótica y Electrónica</h3><div class="image-slot card-img">Imagen</div><a href="#">Ver cursos y carreras <i class="ti ti-arrow-right"></i></a></article>
+          <article class="category-card"><h3>Marketing digital</h3><div class="image-slot card-img">Imagen</div><a href="#">Ver cursos y carreras <i class="ti ti-arrow-right"></i></a></article>
+          <article class="category-card"><h3>Docencia e innovación</h3><div class="image-slot card-img">Imagen</div><a href="#">Ver cursos y carreras <i class="ti ti-arrow-right"></i></a></article>
+          <article class="category-card"><h3>Gestión y oficios</h3><div class="image-slot card-img">Imagen</div><a href="#">Ver cursos y carreras <i class="ti ti-arrow-right"></i></a></article>
+        </div>
+        <button class="slider-arrow right" data-slide="next"><i class="ti ti-chevron-right"></i></button>
       </div>
     </section>
 
-    <section class="section split" id="beneficios">
+    <section class="kids-card" id="kids">
       <div>
-        <span class="eyebrow">Beneficios</span>
-        <h2>Una plataforma educativa simple, moderna y escalable</h2>
-        <p>Diseñada para que FEF Educación pueda crecer con nuevos cursos, formularios, descargas, automatizaciones y captación de leads.</p>
+        <span>FEF KID´S</span>
+        <h2>Talleres, laboratorios y cursos para niños de 7 a 13 años</h2>
+        <p>Programas creativos de robótica, tecnología, programación e inteligencia artificial para aprender jugando y construyendo.</p>
+        <a class="btn btn-dark" href="#">Conocer FEF Kid´s</a>
       </div>
-      <div class="benefit-list">
-        <div><span>01</span><p>Diseño responsive Mobile First.</p></div>
-        <div><span>02</span><p>Popup inteligente de captación de leads.</p></div>
-        <div><span>03</span><p>Código promocional con efecto confetti.</p></div>
-        <div><span>04</span><p>Botón preparado para descarga de E-book.</p></div>
-      </div>
+      <div class="kids-img">Imagen FEF Kid´s<br><small>/assets/img/00_fef_kids.png</small></div>
     </section>
 
-    <section class="section" id="metodologia">
-      <div class="section-head">
-        <span class="eyebrow">Metodología</span>
-        <h2>Aprendizaje flexible y acompañado</h2>
-      </div>
-      <div class="timeline">
-        <div><strong>Explorá</strong><p>Conocé los cursos, beneficios y materiales disponibles.</p></div>
-        <div><strong>Registrate</strong><p>Dejá tus datos para recibir el beneficio inaugural.</p></div>
-        <div><strong>Aprendé</strong><p>Accedé a recursos y formación online desde el campus.</p></div>
-      </div>
+    <section class="mentor-card" id="mentor">
+      <div><span class="badge">RED DE MENTORES</span><h2>¿Sos Profe o Profesional?</h2><p>Sumate a nuestra red de mentores y acompañá a estudiantes, docentes, instituciones y empresas.</p></div>
+      <a class="btn btn-light" href="#">Ser Mentor</a>
     </section>
 
-    <section class="cta section" id="comunidad">
-      <h2>Sumate a la comunidad FEF Educación</h2>
-      <p>Completá tus datos, obtené el 50% OFF y descargá tu E-book de regalo.</p>
-      <button class="btn btn-primary" id="openLeadModalBottom">Quiero mi beneficio</button>
+    <section class="cert-card" id="certificaciones">
+      <div><span class="badge">CERTIFICACIÓN OFICIAL</span><h2>Certificaciones por la UTN-FRT y COPIT</h2><p>Capacitaciones orientadas a la práctica, con respaldo institucional y enfoque profesional.</p></div>
+      <div class="certificate-visual">Certificado FEF</div>
+    </section>
+
+    <section class="lead-section" id="lead">
+      <div class="lead-card">
+        <span class="label">BENEFICIO DE INAUGURACIÓN</span>
+        <h2>Obtené tu 50% OFF y descargá un E-book de regalo</h2>
+        <form id="leadForm" class="lead-form">
+          <label>Nombre<input type="text" name="nombre" placeholder="Tu nombre" required></label>
+          <label>Whatsapp<input type="tel" name="whatsapp" placeholder="+54 9..." required></label>
+          <label>Email<input type="email" name="email" placeholder="tu@email.com" required></label>
+          <button class="btn btn-primary full" type="submit">Quiero mi descuento</button>
+        </form>
+      </div>
     </section>
   </main>
 
-  <nav class="mobile-floating-nav" aria-label="Menú móvil">
-    <a href="#inicio" aria-label="Inicio"><svg viewBox="0 0 24 24"><path d="M3 11 12 3l9 8v10a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1V11Z"/></svg></a>
-    <a href="#cursos" aria-label="Cursos"><svg viewBox="0 0 24 24"><path d="M4 5a2 2 0 0 1 2-2h14v16H6a2 2 0 0 0-2 2V5Zm2 0v12h12V5H6Z"/></svg></a>
-    <button id="mobileMenuBtn" aria-label="Abrir menú"><svg viewBox="0 0 24 24"><path d="M4 6h16v2H4V6Zm0 5h16v2H4v-2Zm0 5h16v2H4v-2Z"/></svg></button>
-    <a href="#beneficios" aria-label="Beneficios"><svg viewBox="0 0 24 24"><path d="M20 7h-2.18A3 3 0 0 0 12 5.76 3 3 0 0 0 6.18 7H4a2 2 0 0 0-2 2v3h20V9a2 2 0 0 0-2-2Zm-7-1a1 1 0 1 1 1 1h-1V6ZM9 5a1 1 0 0 1 1 1v1H9a1 1 0 0 1 0-2Zm-7 9v6a2 2 0 0 0 2 2h7v-8H2Zm11 0v8h7a2 2 0 0 0 2-2v-6h-9Z"/></svg></a>
-    <a href="#contacto" aria-label="Contacto"><svg viewBox="0 0 24 24"><path d="M4 4h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2Zm0 3.2V18h16V7.2l-8 5.33L4 7.2Zm1.2-1.2 6.8 4.53L18.8 6H5.2Z"/></svg></a>
+  <div class="float-actions">
+    <button id="toTop" class="float-btn to-top" type="button" aria-label="Volver arriba"><i class="ti ti-arrow-up"></i></button>
+    <button id="whatsappBtn" class="float-btn whatsapp" type="button" aria-label="Abrir Whatsapp"><i class="ti ti-brand-whatsapp"></i></button>
+    <div class="wa-panel" id="waPanel">
+      <h4>Contactanos por WhatsApp</h4>
+      <a href="https://wa.me/543816150488?text=Hola%20FEF%2C%20necesito%20soporte" target="_blank"><i class="ti ti-headset"></i><span><b>Soporte</b><small>Ayuda técnica y plataforma</small></span></a>
+      <a href="https://wa.me/543816150488?text=Hola%20FEF%2C%20quiero%20informaci%C3%B3n%20sobre%20cursos" target="_blank"><i class="ti ti-shopping-cart"></i><span><b>Ventas</b><small>Cursos y capacitaciones</small></span></a>
+      <a href="https://wa.me/543816150488?text=Hola%20FEF%2C%20necesito%20atenci%C3%B3n%20al%20cliente" target="_blank"><i class="ti ti-message-circle"></i><span><b>Atención al cliente</b><small>Consultas generales</small></span></a>
+    </div>
+  </div>
+
+  <nav class="mobile-bottom" aria-label="Menú móvil">
+    <a href="#top" class="active"><i class="ti ti-layout-grid"></i><span>Inicio</span></a>
+    <a href="#categorias"><i class="ti ti-cube"></i><span>Cursos</span></a>
+    <a href="#kids"><i class="ti ti-rocket"></i><span>Kid´s</span></a>
+    <a href="#certificaciones"><i class="ti ti-award"></i><span>Certif.</span></a>
+    <button id="mobileMenuBtn" type="button"><i class="ti ti-menu-2"></i><span>Menú</span></button>
   </nav>
 
-  <footer class="footer" id="contacto">
-    <div>
-      <strong>FEF Educación</strong>
-      <p>Plataforma E-learning oficial.</p>
+  <footer>
+    <div class="footer-grid">
+      <div><img class="footer-logo" src="assets/img/fefLogo_ligth.png" alt="FEF Educación"><p>Cursos on-demand, capacitaciones en vivo y programas educativos para todas las edades.</p></div>
+      <div><h4>Enlaces</h4><a href="#top">Inicio</a><a href="#categorias">Categorías</a><a href="#kids">FEF Kid´s</a><a href="#certificaciones">Certificaciones</a></div>
+      <form class="footer-form"><h4>Newsletters</h4><label>Recibir novedades por email<input type="email" placeholder="tu@email.com"></label><button type="button">Suscribirme</button></form>
+      <form class="footer-form"><h4>Whatsapp Letters</h4><label>Recibir novedades por WhatsApp<input type="tel" placeholder="+54 9..."></label><button type="button">Quiero recibir novedades</button></form>
     </div>
-    <p>© 2026 FEF Educación. Todos los derechos reservados. Diseño y Desarrollo de <a href="https://electroniagambino.com" target="_blank" rel="noopener">Electrónica Gambino</a> en Sociedad con <a href="https://aseacademia.com" target="_blank" rel="noopener">ASE</a>.</p>
+    <p class="copy">© 2026 FEF Educación. Todos los derechos reservados. Diseño y Desarrollo de <a href="https://electroniagambino.com" target="_blank">Electrónica Gambino</a> en Sociedad con <a href="https://aseacademia.com" target="_blank">ASE</a>.</p>
   </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+  <script src="assets/app.js"></script>
 </body>
 </html>
