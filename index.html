@@ -14,12 +14,15 @@
   <link rel="stylesheet" href="assets/styles.css" />
 </head>
 <body>
-  <div class="topbar"><span>INAUGURACIÓN</span><b>50% OFF</b><strong>en cursos y capacitaciones seleccionadas FEF-50%OFF</strong></div>
+  <div class="topbar" aria-label="Promoción de inauguración">
+    <span class="topbar-badge">INAUGURACIÓN</span>
+    <div class="topbar-marquee"><div class="topbar-track"><b>50% OFF</b><strong>en cursos y capacitaciones seleccionadas</strong><b>FEF-50%OFF</b><strong>Pronto capacitaciones con puntaje docente</strong></div></div>
+  </div>
 
   <header class="site-header" id="top">
     <div class="header-inner">
       <a class="brand" href="https://fefeducacion.com" aria-label="FEF Educación">
-        <img src="assets/img/fefLogo_dark.png" alt="FEF Educación" />
+        <img src="assets/img/fefLogo_ligth.png" alt="FEF Educación" />
         <strong>Educación</strong>
       </a>
 
@@ -32,7 +35,8 @@
       </nav>
 
       <div class="header-actions">
-        <a class="btn btn-soft desktop-cta" href="#plataforma">Plataforma Alumnos</a>
+        <a class="btn btn-soft desktop-cta" href="https://plataforma.fefeducacion.com" target="_blank">Plataforma Alumnos</a>
+        <a class="btn btn-aula mobile-aula" href="https://plataforma.fefeducacion.com">Ir al Aula Virtual</a>
         <a class="btn btn-primary" href="#lead">Inscribirme</a>
         <div class="country" id="countrySelect">
           <button class="country-btn" type="button" aria-label="Seleccionar país"><img src="https://flagcdn.com/w40/ar.png" alt="Argentina"><i class="ti ti-chevron-down"></i></button>
@@ -62,6 +66,7 @@
       </div>
     </section>
 
+    <div class="menu-backdrop" id="menuBackdrop"></div>
     <section class="hamburger-panel" id="hamburgerPanel">
       <div class="panel-col">
         <small>CONOCÉ MÁS</small>
@@ -69,7 +74,7 @@
         <a href="#categorias"><i class="ti ti-book"></i> Recursos <i class="ti ti-chevron-right"></i></a>
         <a href="#mentor"><i class="ti ti-user-star"></i> Red de Mentores <i class="ti ti-chevron-right"></i></a>
         <a href="#kids"><i class="ti ti-rocket"></i> FEF Kid´s <i class="ti ti-chevron-right"></i></a>
-        <a href="#plataforma"><i class="ti ti-school"></i> Plataforma de alumnos <i class="ti ti-chevron-right"></i></a>
+        <a href="https://plataforma.fefeducacion.com"><i class="ti ti-school"></i> Plataforma de alumnos <i class="ti ti-chevron-right"></i></a>
       </div>
       <div class="panel-col">
         <small>PROGRAMAS</small>
@@ -153,7 +158,7 @@
         <p>Programas creativos de robótica, tecnología, programación e inteligencia artificial para aprender jugando y construyendo.</p>
         <a class="btn btn-dark" href="#">Conocer FEF Kid´s</a>
       </div>
-      <div class="kids-img">Imagen FEF Kid´s<br><small>/assets/img/00_fef_kids.png</small></div>
+      <div class="kids-img">Imagen FEF Kid´s<br><small>Agregar URL en CSS .kids-img</small></div>
     </section>
 
     <section class="mentor-card" id="mentor">
@@ -182,7 +187,7 @@
 
   <div class="float-actions">
     <button id="toTop" class="float-btn to-top" type="button" aria-label="Volver arriba"><i class="ti ti-arrow-up"></i></button>
-    <button id="whatsappBtn" class="float-btn whatsapp" type="button" aria-label="Abrir Whatsapp"><i class="ti ti-brand-whatsapp"></i></button>
+    <button id="whatsappBtn" class="float-btn whatsapp" type="button" aria-label="Abrir Whatsapp"><span class="wa-logo" aria-hidden="true">WhatsApp</span></button>
     <div class="wa-panel" id="waPanel">
       <h4>Contactanos por WhatsApp</h4>
       <a href="https://wa.me/543816150488?text=Hola%20FEF%2C%20necesito%20soporte" target="_blank"><i class="ti ti-headset"></i><span><b>Soporte</b><small>Ayuda técnica y plataforma</small></span></a>

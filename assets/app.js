@@ -52,11 +52,18 @@ $$('.nav-item').forEach(item=>{item.addEventListener('mouseenter',()=>showMega(i
 mega.addEventListener('mouseenter',()=>clearTimeout(closeTimer)); mega.addEventListener('mouseleave',hideMega);
 
 const hamburgerPanel = $('#hamburgerPanel');
-function togglePanel(){hamburgerPanel.classList.toggle('show')}
+const menuBackdrop = $('#menuBackdrop');
+function setPanel(open){
+  hamburgerPanel.classList.toggle('show', open);
+  if(menuBackdrop) menuBackdrop.classList.toggle('show', open);
+  document.body.classList.toggle('menu-open', open);
+}
+function togglePanel(){ setPanel(!hamburgerPanel.classList.contains('show')); }
 $('#hamburgerBtn').addEventListener('click', togglePanel);
 $('#mobileMenuBtn').addEventListener('click', togglePanel);
+if(menuBackdrop) menuBackdrop.addEventListener('click', () => setPanel(false));
 $('#countrySelect').addEventListener('click', e => { e.stopPropagation(); $('#countrySelect').classList.toggle('open'); });
-document.addEventListener('click', e => { if(!e.target.closest('.hamburger-panel')&&!e.target.closest('#hamburgerBtn')&&!e.target.closest('#mobileMenuBtn')) hamburgerPanel.classList.remove('show'); if(!e.target.closest('#countrySelect')) $('#countrySelect').classList.remove('open'); });
+document.addEventListener('click', e => { if(!e.target.closest('.hamburger-panel')&&!e.target.closest('#hamburgerBtn')&&!e.target.closest('#mobileMenuBtn')) setPanel(false); if(!e.target.closest('#countrySelect')) $('#countrySelect').classList.remove('open'); });
 
 const slider = $('#categorySlider');
 $$('[data-slide]').forEach(btn => btn.addEventListener('click', () => slider.scrollBy({left: btn.dataset.slide === 'next' ? 340 : -340, behavior:'smooth'})));
@@ -74,4 +81,35 @@ function discountPopup(){
   Swal.fire({title:'Tu beneficio está activo',html:'<p>Usá este código al inscribirte:</p><div class="swal-code">FEF-50%OFF</div><br><a class="btn btn-primary" href="assets/docs/ebook-regalo-fef.pdf" download>Descargar E-book de regalo</a>',showConfirmButton:false,showCloseButton:true,didOpen:fireConfetti});
 }
 leadForm.addEventListener('submit', e => { e.preventDefault(); const data = Object.fromEntries(new FormData(leadForm)); localStorage.setItem('fef_lead', JSON.stringify({...data, createdAt:new Date().toISOString()})); discountPopup(); leadForm.reset(); });
-if(!localStorage.getItem('fef_welcome_seen')){ setTimeout(()=>{localStorage.setItem('fef_welcome_seen','1'); Swal.fire({title:'Beneficio de inauguración',text:'Dejá tus datos y obtené 50% OFF más un E-book de regalo.',confirmButtonText:'Obtener beneficio',showCancelButton:true,cancelButtonText:'Más tarde'}).then(r=>{if(r.isConfirmed) location.hash='lead';});},900); }
+
+function leadWelcomePopup(){
+  Swal.fire({
+    title:'Beneficio de inauguración',
+    html:`<p>Completá tus datos y obtené 50% OFF más un E-book de regalo.</p>
+      <div class="lead-form-popup">
+        <label>Nombre<input id="swalNombre" type="text" placeholder="Tu nombre"></label>
+        <label>Whatsapp<input id="swalWhatsapp" type="tel" placeholder="+54 9..."></label>
+        <label>Email<input id="swalEmail" type="email" placeholder="tu@email.com"></label>
+      </div>`,
+    confirmButtonText:'Obtener 50% OFF',
+    showCancelButton:true,
+    cancelButtonText:'Más tarde',
+    focusConfirm:false,
+    preConfirm:()=>{
+      const nombre = $('#swalNombre').value.trim();
+      const whatsapp = $('#swalWhatsapp').value.trim();
+      const email = $('#swalEmail').value.trim();
+      if(!nombre || !whatsapp || !email){ Swal.showValidationMessage('Completá nombre, WhatsApp y email.'); return false; }
+      if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){ Swal.showValidationMessage('Ingresá un email válido.'); return false; }
+      return {nombre, whatsapp, email, createdAt:new Date().toISOString(), source:'welcome-popup'};
+    }
+  }).then(r=>{
+    if(r.isConfirmed && r.value){
+      localStorage.setItem('fef_lead', JSON.stringify(r.value));
+      localStorage.setItem('fef_welcome_seen','1');
+      discountPopup();
+    }
+  });
+}
+if(!localStorage.getItem('fef_welcome_seen')) setTimeout(leadWelcomePopup, 900);
+
